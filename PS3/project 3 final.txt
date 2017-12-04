@@ -1,0 +1,81 @@
+Benjamin Kaplan
+
+Interactive Shell (include IO redirection and script interpretation)
+===============================================================================
+binyamin@BenjaminButtox:~/Documents$ ./a.out
+ls
+a.out	     baby.c   file10.txt  >file2.txt  ls.c     project3.c   test16.txt~
+aproject3.c  baby.c~  file15.txt  file2.txt   ls.c~    project3.c~  testme.sh
+baby	     cat.out  file1.txt   ls	      newfile  test16.txt   testme.sh~
+CPU:  0.004 | User: 0.003 | Real:0.007
+ls -la
+total 108
+drwxr-xr-x  2 binyamin binyamin  4096 Nov  6 23:57 .
+drwxr-xr-x 26 binyamin binyamin  4096 Nov  5 18:04 ..
+-rwxrwxr-x  1 binyamin binyamin 12231 Nov  6 23:57 a.out
+-rw-rw-r--  1 binyamin binyamin  2502 Nov  4 23:43 aproject3.c
+-rwxrwxr-x  1 binyamin binyamin  7196 Nov  5 20:02 baby
+-rw-rw-r--  1 binyamin binyamin   452 Nov  5 20:02 baby.c
+-rw-rw-r--  1 binyamin binyamin   400 Nov  5 13:17 baby.c~
+-rw-rw-rw-  1 binyamin binyamin    40 Nov  6 23:46 cat.out
+----------  1 binyamin binyamin   174 Nov  5 22:49 file10.txt
+-rw-rw-rw-  1 binyamin binyamin  1189 Nov  6 23:34 file15.txt
+-rw-rw-r--  1 binyamin binyamin    16 Nov  5 20:09 file1.txt
+-rw-rw-rw-  1 binyamin binyamin     0 Nov  5 20:10 >file2.txt
+-rw-rw-rw-  1 binyamin binyamin  1027 Nov  5 22:34 file2.txt
+-rwxrwxr-x  1 binyamin binyamin  7156 Nov  5 01:45 ls
+-rw-rw-r--  1 binyamin binyamin   106 Nov  5 01:45 ls.c
+-rw-rw-r--  1 binyamin binyamin   106 Nov  5 01:45 ls.c~
+-rw-rw-r--  1 binyamin binyamin     0 Nov  5 01:23 newfile
+-rw-rw-r--  1 binyamin binyamin  5778 Nov  6 23:40 project3.c
+-rw-rw-r--  1 binyamin binyamin  5776 Nov  6 23:40 project3.c~
+-rw-rw-r--  1 binyamin binyamin    65 Nov  6 23:53 test16.txt
+-rw-rw-r--  1 binyamin binyamin    60 Nov  6 23:52 test16.txt~
+-rwxrwxr-x  1 binyamin binyamin   108 Nov  6 23:52 testme.sh
+-rwxrwxr-x  1 binyamin binyamin   108 Nov  6 23:47 testme.sh~
+CPU:  0.004 | User: 0.005 | Real:0.009
+ls >file1.txt
+file to REDIRECT STDOUT: file1.txt
+CPU:  0.007 | User: 0.003 | Real:0.010
+cat file1.txt
+a.out
+aproject3.c
+baby
+baby.c
+baby.c~
+cat.out
+file10.txt
+file15.txt
+file1.txt
+>file2.txt
+file2.txt
+ls
+ls.c
+ls.c~
+newfile
+project3.c
+project3.c~
+test16.txt
+test16.txt~
+testme.sh
+testme.sh~
+CPU:  0.005 | User: 0.002 | Real:0.007
+cd /home/binyamin/Downloads
+Directory changed to '/home/binyamin/Downloads'
+ls
+google-chrome-stable_current_amd64 (1).deb  project3.c
+google-chrome-stable_current_amd64.deb	    project3.c~
+Kaplan_Benjamin_0083602_11_5_2017.pdf	    pset-w03.ps
+CPU:  0.003 | User: 0.002 | Real:0.005
+exit 5
+binyamin@BenjaminButtox:~/Documents$ echo $?
+5
+binyamin@BenjaminButtox:~/Documents$ ./testme.sh
+this is text
+this is a second line of text
+CPU:  0.005 | User: 0.006 | Real:0.011
+this is text
+this is a second line of text
+CPU:  0.007 | User: 0.008 | Real:0.015
+binyamin@BenjaminButtox:~/Documents$ echo $?
+123
