@@ -1,0 +1,99 @@
+Porblem 1
+===========================
+#include <stdio.h>
+
+int main(int argc, char **argv){
+  printf("Hello world");
+}
+
+
+binyamin@BenjaminButtox:~/Documents/Project 7$ gcc problem2.c
+gcc: error: problem2.c: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+binyamin@BenjaminButtox:~/Documents/Project 7$ gcc problem1.c
+binyamin@BenjaminButtox:~/Documents/Project 7$ strace ./a.out
+execve("./a.out", ["./a.out"], [/* 37 vars */]) = 0
+brk(0)                                  = 0x8a91000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7769000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+...
+write(1, "Hello world", 11Hello world)             = 11
+exit_group(11)                          = ?
+
+
+
+
+Problem 2
+===========================
+binyamin@BenjaminButtox:as --64 problem-2.S
+binyamin@BenjaminButtox:ld -m elf_x86_64 problem-2.o
+binyamin@BenjaminButtox:~/Documents/Project 7$ strace ./problem-2.out
+execve("./a.out", ["./a.out"], [/* 37 vars */]) = 0
+brk(0)                                  = 0x8f3c000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb779a000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+...
+mprotect(0xb77bd000, 4096, PROT_READ)   = 0
+munmap(0xb7789000, 69264)               = 0
+write(1, "Hello world!", 12Hello world!)            = 12  
+_exit(0)                                = ?
+
+Because there was no explicit exit call in the assembly code, the kernel called _exit(0) which has an unknown return adress (as is shown in the last line ending with '?').
+
+
+Problem 3
+=========================================
+binyamin@BenjaminButtox:~/Documents/Project 7$ strace ./a.out
+execve("./a.out", ["./a.out"], [/* 37 vars */]) = 0
+brk(0)                                  = 0x9c42000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb772b000
+...
+write(1, "Hello world!", 12Hello world!)            = 12
+_exit(50)                               = ?
+binyamin@BenjaminButtox:~/Documents/Project 7$ echo $?
+50
+
+Because there was no explicit exit call in the previous problem's assembly code, the kernel called _exit(0) which has an unknown return adress (as is shown in the last line ending with '?'). In this problem, an explicit exit code of 50 stated, which can be seen in strace and the sehll variable $?
+
+
+Problem 4
+=======================================
+The system call for write (which is normally 4) was change to 100000. strace shows that errno is set to 38, FUNCTION NOT IMPLEMENTED, and the _exit(50) call has no return value because the program terminated in error.
+
+binyamin@BenjaminButtox:~/Documents/Project 7$ strace ./a.out
+execve("./a.out", ["./a.out"], [/* 37 vars */]) = 0
+brk(0)                                  = 0x8983000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb772c000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+...
+syscall_100000(0x1, 0x804a010, 0xc, 0, 0, 0, 0xffffffda, 0x7b, 0x7b, 0, 0x33, 0x186a0, 0x80483cb, 0x73, 0x246, 0xbfcfa44c, 0x7b, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) = -1 (errno 38)
+_exit(50)                               = ?
+
+
+
+
+problem-2.S
+=========================
+.section .text
+    .global _start
+_start:
+    mov $4,%eax
+    mov $1,%ebx
+    mov $message,%ecx
+    mov msglength,%edx
+    int  $0x80
+
+    ;mov $1, %eax
+    ;mov $50, %ebx
+    ;int $0x80
+.section .data
+    message: .ascii "Hello world!"
+    msglength: .word 12
