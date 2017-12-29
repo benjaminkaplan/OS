@@ -1,0 +1,24 @@
+Problem 2
+==============================================
+Without TAS:
+
+binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
+in child 0
+...
+in child 9
+memory = 100
+binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
+in child 0
+...
+in child 9
+memory = 98
+binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
+in child 0
+...
+in child 9
+memory = 98
+binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
+in child 0
+...
+in child 9
+memory = 99
