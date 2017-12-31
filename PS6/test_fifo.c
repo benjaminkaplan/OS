@@ -30,6 +30,7 @@ int main(int argc, char **argv){
     exit(EXIT_FAILURE);
   }
   struct fifo fifo1;
+  memory = fifo1;
   fifo_init(&fifo1);
   pid_t child1;
   pid_t child2;
