@@ -4,6 +4,9 @@
 #include <fcntl.h>
 #include "spinlock.h"
 #include <stdlib.h>
+
+
+
 void spin_lock(struct spinlock *l){
   while(tas(l->lock) != 0)
     sched_yield();

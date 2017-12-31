@@ -2,23 +2,28 @@ Problem 2
 ==============================================
 Without TAS:
 
-binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
-in child 0
+binyamin@BenjaminButtox:~/Documents$ ./a.out 300 300
 ...
-in child 9
-memory = 100
-binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
-in child 0
+memory = 89969
+binyamin@BenjaminButtox:~/Documents$ ./a.out 300 300
 ...
-in child 9
-memory = 98
-binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
-in child 0
+memory = 89924
+binyamin@BenjaminButtox:~/Documents$ ./a.out 300 300
 ...
-in child 9
-memory = 98
-binyamin@BenjaminButtox:~/Documents$ ./a.out 10 10
-in child 0
+memory = 89941
+binyamin@BenjaminButtox:~/Documents$ ./a.out 300 300
 ...
-in child 9
-memory = 99
+memory = 89970
+
+With TAS:
+
+binyamin@BenjaminButtox:~/Documents$ ./a.out 300 300
+...
+memory = 90000
+binyamin@BenjaminButtox:~/Documents$ ./a.out 300 300
+...
+memory = 90000
+binyamin@BenjaminButtox:~/Documents$ ./a.out 300 300
+...
+memory = 90000
+
