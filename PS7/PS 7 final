@@ -43,7 +43,6 @@ munmap(0xb7789000, 69264)               = 0
 write(1, "Hello world!", 12Hello world!)            = 12  
 _exit(0)                                = ?
 
-Because there was no explicit exit call in the assembly code, the kernel called _exit(0) which has an unknown return adress (as is shown in the last line ending with '?').
 
 
 Problem 3
@@ -59,7 +58,6 @@ _exit(50)                               = ?
 binyamin@BenjaminButtox:~/Documents/Project 7$ echo $?
 50
 
-Because there was no explicit exit call in the previous problem's assembly code, the kernel called _exit(0) which has an unknown return adress (as is shown in the last line ending with '?'). In this problem, an explicit exit code of 50 stated, which can be seen in strace and the sehll variable $?
 
 
 Problem 4
@@ -97,3 +95,12 @@ _start:
 .section .data
     message: .ascii "Hello world!"
     msglength: .word 12
+
+
+
+
+Problem 3 Writeup
+============================================
+Because there was no explicit exit call in the previous problem's assembly code, the kernel called _exit(0) which has an unknown return adress (as is shown in the last line ending with '?'). In this problem, an explicit exit code of 50 stated, which can be seen in strace and the sehll variable $?
+
+
